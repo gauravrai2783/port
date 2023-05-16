@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #winner{
+            width: 20%;
+            height: 20%;
+            margin: auto;
+        }
+        #member-1,#member-2,#member-3{
+            border: 1px solid black;
+            width: 5%;
+            height: 5%;
+            margin: auto;
+            /* display: flex; */
+            margin-top: 2%;
+        }
+        button{
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="winner"></div>
+    <div id="member-1"></div>
+    <div id="member-2"></div>
+    <div id="member-3"></div>
+    <button id="roll">ROLL THE DICE</button>
+</body>
+</html>
+<script>
+    let mem1=document.getElementById("member-1");
+    let mem2=document.getElementById("member-2");
+    let mem3=document.getElementById("member-3");
+    document.getElementById("roll").addEventListener("click",roll);
+
+    function roll(){
+        let m1=Math.floor(Math.random()*7)
+        let m2=Math.floor(Math.random()*7)
+        let m3=Math.floor(Math.random()*7)
+        mem1.innerText=m1; mem2.innerText=m2; mem3.innerText=m3;
+
+        console.log(mem1,mem2,mem3);
+
+        let max=Math.max(m1,m2,m3)
+        let win=document.getElementById("winner");
+        win.innerText="winner"+" " +max; win.style.backgroundColor="green"
+        if(m1==max){
+            mem1.style.backgroundColor="green"
+        }
+       else if(m2==max){
+            mem2.style.backgroundColor="green"
+        }
+        else if(m3==max){
+            mem3.style.backgroundColor="green"
+        }
+
+
+        if(m1<m2&&m1>m3||m1>m2&&m1<m3){
+            mem1.style.backgroundColor="yellow"
+        }
+        else if(m2<m1&&m2>m3||m2>m1&&m2<m3){
+            mem2.style.backgroundColor="yellow"
+        }
+        else if(m3<m1&&m3>m2||m3>m1&&m3<m2){
+            mem3.style.backgroundColor="yellow"
+        }
+
+        if(m1<m2&&m1<m3){
+            mem1.style.backgroundColor="red"
+        }
+        else if(m2<m1&&m2<m3){
+            mem2.style.backgroundColor="red"
+        }
+        else if(m3<m1&&m3<m2){
+            mem3.style.backgroundColor="red"
+        }
+    }
+</script>
